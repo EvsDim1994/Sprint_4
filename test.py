@@ -68,7 +68,14 @@ class TestBooksCollector():
         collector_book.add_new_book('Оно')
         collector_book.set_book_genre('Оно', 'Ужасы')
         collector_book.add_book_in_favorites('Оно')
-        assert collector_book.get_list_of_favorites_books()[0] == 'Оно' and len(collector_book.get_list_of_favorites_books()) == 1
+        assert 'Оно' in collector_book.get_list_of_favorites_books()
+
+    def test_get_list_of_favorites_books_for_with_2_books(self, collector_book):
+        collector_book.add_new_book('Оно')
+        collector_book.add_new_book('Пуаро')
+        collector_book.add_book_in_favorites('Оно')
+        collector_book.add_book_in_favorites('Пуаро')
+        assert len(collector_book.get_list_of_favorites_books()) == 2
 
     def test_delete_book_from_favorites_for_added_book(self, collector_book):
         collector_book.add_new_book('Оно')
@@ -76,6 +83,16 @@ class TestBooksCollector():
         collector_book.add_book_in_favorites('Оно')
         collector_book.delete_book_from_favorites('Оно')
         assert not collector_book.get_list_of_favorites_books()
+
+    def test_get_books_genre_for_2_books(self, collector_book):
+        collector_book.add_new_book('Оно')
+        collector_book.add_new_book('Пуаро')
+        assert len(collector_book.get_books_genre()) == 2
+
+    def test_get_books_genre_with_book_genre(self, collector_book):
+        collector_book.add_new_book('Оно')
+        collector_book.set_book_genre('Оно', 'Ужасы')
+        assert collector_book.get_books_genre().get('Оно') == 'Ужасы'
 
 
 
