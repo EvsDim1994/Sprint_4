@@ -89,10 +89,10 @@ class TestBooksCollector():
         collector_book.add_new_book('Пуаро')
         assert len(collector_book.get_books_genre()) == 2
 
-    def test_get_books_genre_with_book_genre(self, collector_book):
+    def test_get_book_genre_with_book_genre(self, collector_book):
         collector_book.add_new_book('Оно')
         collector_book.set_book_genre('Оно', 'Ужасы')
-        assert collector_book.get_books_genre().get('Оно') == 'Ужасы'
+        assert collector_book.get_book_genre('Оно') == 'Ужасы'
 
 
 
